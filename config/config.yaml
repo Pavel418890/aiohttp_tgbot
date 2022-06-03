@@ -1,0 +1,22 @@
+postgres:
+  database_url:
+  require_ssl:
+
+rabbit:
+  cloudamqp:
+  require_ssl:
+  queue_name:
+  capacity:
+
+mongo:
+  mongo_url:
+
+s3:
+  aws_access_key:
+  aws_secret_key:
+  region_name:
+  service_name:
+  bucket_name:
+
+telegram:
+  bot_token:
