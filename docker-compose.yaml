@@ -3,25 +3,29 @@ version: '3'
 services:
 # Only for local installation
 
-#  pg:
-#    container_name: pg
-#    image: postgres:14
-#    environment:
-#      - POSTGRES_PASSWORD=tgbot
-#      - POSTGRES_DB=tgbot
-#    ports:
-#     - 5432:5432
-#  rabbit:
-#    container_name: rabbit
-#    image: rabbitmq:3-management
-#    ports:
-#     - 5672:5672
-#     - 15672:15672
+  pg:
+    container_name: pg
+    image: postgres:14
+    environment:
+      - POSTGRES_PASSWORD=tgbot
+      - POSTGRES_DB=tgbot
+    ports:
+     - 5432:5432
+    restart: always
+
+  rabbit:
+    container_name: rabbit
+    image: rabbitmq:3-management
+    ports:
+     - 5672:5672
+     - 15672:15672
+    restart: always
 
   tgbot:
     container_name: tgbot
     build: .
     restart: on-failure
-#    depends_on:
-#      - rabbit
-#      - pg
+    depends_on:
+      - rabbit
+      - pg
+    restart: always

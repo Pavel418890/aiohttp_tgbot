@@ -33,7 +33,6 @@ Using scenario:
 |MongoDB|NoSQL database. Store chat events|
 |Motor|Coroutine-based API for non-blocking access to MongoDB|
 |Docker/docker compose|Platform for local developing and running app|
-|Heroku|Container-based cloud platform, for deploying and running app|
 
 [Back](#content)
 
@@ -46,7 +45,7 @@ Requirements:
 - Install [Docker and docker compose](https://www.docker.com/products/docker-desktop/) 
 
 Setup App:
-1. Add environment variables in `./Dockerfile` and uncomment services in `./docker-compose.yaml`
-2. In your terminal run `$ docker compose up -d`
+1. Add environment variables in `./Dockerfile` 
+2. Run `docker compose up -d`
 
 [Back](#content)
