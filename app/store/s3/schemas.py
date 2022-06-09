@@ -33,8 +33,8 @@ Schema.TYPE_MAPPING[datetime.datetime] = DatetimeLocal
 
 @dataclass
 class Owner:
-    DisplayName: str
     ID: str
+    DisplayName: Optional[str]
 
 
 @dataclass

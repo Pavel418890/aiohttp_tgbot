@@ -14,7 +14,7 @@ chat interface. Also provides a list of uploaded files.
 Using scenario:
 1. In [telegram](https://web.telegram.org/) search @AsyncPythonBot
 2. Send command `/start`
-3. Upload your document files (24MB max available size for every file)
+3. Upload your document files (20 MB max available size for every file)
 4. Send command `/files`
 
 [Back](#content)
