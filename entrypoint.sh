@@ -1,4 +1,8 @@
-cat config/heroku_config.yaml | envsubst > config/config.yaml
+#!/usr/bin/bash
+
+set -e
+
+envsubst < "config/temp.yaml" > "config/config.yaml"
 
 export PYTHONPATH=.
 

@@ -1,22 +1,19 @@
 postgres:
   database_url:
-  require_ssl:
+  require_ssl: false
 
 rabbit:
   cloudamqp:
-  require_ssl:
-  queue_name:
-  capacity:
+  require_ssl: false
+  queue_name: tgbot_updates
+  capacity: 5
 
 mongo:
   mongo_url:
 
 s3:
-  aws_access_key:
-  aws_secret_key:
-  region_name:
-  service_name:
-  bucket_name:
+  service_name: s3
+  bucket_name: plotsbucket
 
 telegram:
   bot_token:

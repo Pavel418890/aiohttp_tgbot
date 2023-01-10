@@ -1,5 +1,4 @@
-from pprint import pprint
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Callable
 
 from aiobotocore.session import get_session, AioSession
 from aiohttp import StreamReader, web
@@ -21,9 +20,7 @@ class S3Accessor(BaseAccessor):
     async def connect(self, app: "Application"):
         async with self._session.create_client(
                 service_name=app.config.s3.service_name,
-                region_name=app.config.s3.region_name,
-                aws_access_key_id=app.config.s3.aws_access_key,
-                aws_secret_access_key=app.config.s3.aws_secret_key
+                endpoint_url="https://storage.yandexcloud.net",
         ) as s3:
             response = await s3.list_buckets()
             is_present = False
@@ -41,9 +38,7 @@ class S3Accessor(BaseAccessor):
     async def get_files(self) -> list[Content]:
         async with self._session.create_client(
                 service_name=self.app.config.s3.service_name,
-                region_name=self.app.config.s3.region_name,
-                aws_access_key_id=self.app.config.s3.aws_access_key,
-                aws_secret_access_key=self.app.config.s3.aws_secret_key
+                endpoint_url="https://storage.yandexcloud.net",
         ) as s3:
             paginator = s3.get_paginator('list_objects')
             async for result in paginator.paginate(
@@ -56,13 +51,11 @@ class S3Accessor(BaseAccessor):
             self,
             path: str,
             reader: StreamReader,
-            upload_callback: Optional[callable]
+            upload_callback: Optional[Callable]
     ):
         async with self._session.create_client(
                 service_name=self.app.config.s3.service_name,
-                region_name=self.app.config.s3.region_name,
-                aws_access_key_id=self.app.config.s3.aws_access_key,
-                aws_secret_access_key=self.app.config.s3.aws_secret_key
+                endpoint_url="https://storage.yandexcloud.net",
         ) as s3:
             async with MultipartUploader(
                     client=s3,

@@ -21,10 +21,7 @@ class RabbitConfig:
 
 @dataclass
 class S3Config:
-    aws_access_key: str
-    aws_secret_key: str
     service_name: str
-    region_name: str
     bucket: str
 
 
@@ -40,11 +37,11 @@ class MongoConfig:
 
 @dataclass
 class Config:
-    tg: Optional[TGBotConfig] = None
-    rabbit: Optional[RabbitConfig] = None
-    s3: Optional[S3Config] = None
-    pg: Optional[PostgresConfig] = None
-    mongo: Optional[MongoConfig] = None
+    tg: TGBotConfig
+    rabbit: RabbitConfig
+    s3: S3Config
+    pg: PostgresConfig
+    mongo: MongoConfig
 
 
 def setup_config(app: "Application", config_path: str):
@@ -58,10 +55,7 @@ def setup_config(app: "Application", config_path: str):
             capacity=raw_config["rabbit"]["capacity"]
         ),
         s3=S3Config(
-            aws_secret_key=raw_config["s3"]["aws_secret_key"],
-            aws_access_key=raw_config["s3"]["aws_access_key"],
             service_name=raw_config["s3"]["service_name"],
-            region_name=raw_config["s3"]["region_name"],
             bucket=raw_config["s3"]["bucket_name"],
         ),
         pg=PostgresConfig(

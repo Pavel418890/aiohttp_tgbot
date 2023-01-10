@@ -35,6 +35,7 @@ class TelegramBotManager:
             elif update.message.text == "/files":
                 return await self._get_files(update.message.chat.id)
             else:
+
                 await self.app.store.tg.send_message(
                     chat_id=update.message.chat.id,
                     message="[Please send me a file]"
@@ -71,9 +72,10 @@ class TelegramBotManager:
                     content.LastModified.strftime("%y-%m-%d %H:%M:%S %Z")
                 ]
             )
-        return await self.app.store.tg.send_message(
+        result = await self.app.store.tg.send_message(
             chat_id, f"<pre>{table}</pre>", parse_mode="HTML"
         )
+        return result
 
     async def _greetings(self, user_id: int, user_name: str) -> Message:
         await self.app.store.pg.add_new_user(user_id, user_name)

@@ -7,7 +7,7 @@
 
 <a id="summary"><h3>Short description</h3></a>
 
-S3 Bucket Uploader - [Telegram Bot](https://api.telegram.org) for 
+S3 Bucket Uploader - [Telegram Bot](https://api.telegram.org) for
 asynchronously upload documents to S3 Bucket, using telegram
 chat interface. Also provides a list of uploaded files.
 
@@ -41,11 +41,22 @@ Using scenario:
 Requirements:
 - Create [Telegram Bot](https://core.telegram.org/bots)
 - Create [Amazon S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) and add access key in IAM service.
-- Create [Mongo cluster](https://www.mongodb.com/docs/atlas/getting-started/) or use local mongo DB 
-- Install [Docker and docker compose](https://www.docker.com/products/docker-desktop/) 
+- Create [Mongo cluster](https://www.mongodb.com/docs/atlas/getting-started/) or use local mongo DB
+- Install [Docker and docker compose](https://www.docker.com/products/docker-desktop/)
 
 Setup App:
-1. Add environment variables in `./Dockerfile` 
+1. Export environment variables
+```bash
+export AWS_BUCKET_NAME=
+export BOT_TOKEN=
+export CLOUDAMQP=
+export DATABASE_URL=
+export MONGO_URL=
+mkdir ~/.aws && \
+    echo "[default]\n aws_access_key_id = <YOUR_AWS_ACCESS_KEY_ID>\n aws_secret_access_key=<YOUR_AWS_SECRET_KEY>\n" > ~/.aws/credentials && \
+    echo "[default]\n region = <YOUR_AWS_REGION_NAME>\n" > ~/.aws/config
+```
+
 2. Run `docker compose up -d`
 
 [Back](#content)

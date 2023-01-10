@@ -28,3 +28,13 @@ services:
       - rabbit
       - pg
     restart: always
+
+  mongo:
+    image: mongo:4.4.14
+    container_name: mongo
+    restart: on-failure
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=tgbot
+      - MONGO_INITDB_ROOT_PASSWORD=tgbot

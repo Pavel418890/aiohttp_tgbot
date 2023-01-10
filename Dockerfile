@@ -18,14 +18,6 @@ FROM python:3.10.3-slim-buster
 COPY --from=builder /app/wheels /wheels
 
 ENV HOME="/home/aiohttp-tgbot"
-#ENV DATABASE_URL=
-#ENV CLOUDAMQP=
-#ENV MONGO_URL=
-#ENV AWS_ACCESS_KEY=
-#ENV AWS_SECRET_KEY=
-#ENV AWS_REGION_NAME=
-#ENV AWS_BUCKET_NAME=
-#ENV BOT_TOKEN=
 
 WORKDIR $HOME
 RUN apt update && apt install -y gettext-base

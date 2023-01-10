@@ -1,4 +1,3 @@
-from pprint import pprint
 from typing import Optional, TYPE_CHECKING
 
 from aiohttp import ClientSession, StreamReader
@@ -81,7 +80,8 @@ class TelegramBotAccessor(BaseAccessor):
                 json={"chat_id": chat_id, "text": message},
                 params=params
         ) as response:
-            return MessageResponse.Schema().loads(await response.text()).result
+            result = await response.text()
+            return MessageResponse.Schema().loads(result).result
 
     async def edit_message(self, chat_id: int, message_id: str, message: str):
         async with self.session.post(

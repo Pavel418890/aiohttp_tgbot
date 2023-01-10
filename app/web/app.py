@@ -9,8 +9,8 @@ from app.store import Store, setup_store
 
 
 class Application(web.Application):
-    config: Optional[Config] = None
-    store: Optional[Store] = None
+    config: Config
+    store: Store
 
 
 app = Application()
