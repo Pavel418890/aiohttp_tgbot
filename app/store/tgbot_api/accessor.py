@@ -38,7 +38,7 @@ class TelegramBotAccessor(BaseAccessor):
 
     def get_base_query(self, method: str):
         return self._build_query(
-            host="https://api.telegram.org/",
+            host="https://api.telegram.org",
             method=method,
             params={
                 "bot": self.app.config.tg.token

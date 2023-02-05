@@ -20,6 +20,7 @@ COPY --from=builder /app/wheels /wheels
 ENV HOME="/home/aiohttp-tgbot"
 
 WORKDIR $HOME
+
 RUN apt update && apt install -y gettext-base
 
 RUN mkdir -p /home/aiohttp-tgbot && \
@@ -35,8 +36,8 @@ RUN pip install --no-cache-dir -U pip wheel setuptools && \
 
 COPY . .
 
-RUN chown -R 1000:1000 . && chmod +x ./entrypoint.sh
+RUN chown -R 1000:1000 . && chmod +x entrypoint.sh
 
 USER tgbot
 
-ENTRYPOINT "./entrypoint.sh"
+ENTRYPOINT "$HOME/entrypoint.sh"
